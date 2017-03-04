@@ -1,0 +1,92 @@
+/*setting background texture image */
+body {
+  color: #cccccc;
+  background-image: url(../images/lodyas.png);
+}
+
+/*lower opacity for blocks */
+.jumbotron, .panel, .footer {
+	background-color: rgba(200,200,255,.25);
+	border-color: #ffffff;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.footer {
+	border-right: 0;
+	border-left: 0;
+	border-bottom: 0;
+}
+
+.push{
+	height: 50px;
+}
+/*scales imgs to width of div*/
+img{
+	width: 100%;
+}
+
+.crystal{
+	margin: auto;
+}
+
+/*color changes for each image*/
+.crys0{
+	filter: hue-rotate(0deg);
+}
+
+.crys1{
+	filter: hue-rotate(90deg);
+}
+
+.crys2{
+	filter: hue-rotate(180deg);
+}
+
+.crys3{
+	filter: hue-rotate(250deg);
+}
+
+/*edit button color*/
+.btn-primary {
+	background-color: #df691a;
+	border-color: #6f350d;
+}
+
+.btn-primary:hover{
+	background-color: #6f350d;
+	border-color: #df691a; 
+}
+
+/*hide button pin to upper right*/
+#hideBtn {
+	position: fixed;
+	top: 3px;
+	right: 3px;
+	z-index: 100;
+}
+
+
+/*Crystal Animations*/
+@keyframes rotateHue-animation{
+	25% { transform: rotate(20deg); }
+	50% { filter: hue-rotate(60deg); }
+	75% { transform: rotate(-20deg); }
+}
+.hueRotate {
+	animation-name: rotateHue-animation;
+	animation-duration: 3000ms;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes click-animation{
+	50% { transform: scale(.8); }
+}
+.click {
+	animation-name: click-animation;
+	animation-duration: 100ms;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+
+}	
