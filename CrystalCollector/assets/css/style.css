@@ -70,7 +70,7 @@ img{
 /*Crystal Animations*/
 @keyframes rotateHue-animation{
 	25% { transform: rotate(20deg); }
-	50% { filter: hue-rotate(60deg); }
+	50% { filter: hue-rotate(80deg); }
 	75% { transform: rotate(-20deg); }
 }
 .hueRotate {
