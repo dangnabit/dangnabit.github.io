@@ -162,15 +162,13 @@ $(document).ready(function() {
             $ruleBtn.text("It's not that complicated of a game...");
         } else if (ruleClk == 4) {
             $ruleBtn.text("Fine.");
+            
+            $rules.fadeOut(0, function() {});
             rulesShown = false;
-            toggleRules();
-            $rules.fadeOut(0, function() {
-
-            });
             setTimeout(function(){
                 $rules.html("<h3>Reach your target by clicking on the crystals. Each crystal will increase your score. <br> Pay attention though! Each crystal increses your score by a different value and the values change every round. Don't be discouraged if you can't complete this challenge. </h3> <h2>Math is hard.</h2>");
-                $rules.fadeIn('slow', function() {});
-            }, 200);    
+                toggleRules();
+            }, 300);    
         } else if (ruleClk == 5) {
             $ruleBtn.text("Need to hear the rules again, huh?")
         }
