@@ -104,11 +104,10 @@ $(document).ready(function() {
     $crystal.on("click", function() {
 
         $(this).css({
-            height: '90%',
-            width: '100%'
+            width: '90%'
         });
         $(this).animate({
-            height: '100%'
+            width: '100%'
         });
 
         if (rulesShown && ruleBtnClk == 1) {
