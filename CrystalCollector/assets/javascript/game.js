@@ -41,8 +41,8 @@ $(document).ready(function() {
     generateCrysVal = function() {
         crysVal = []; //empties Value array
 
-        //for loop runs until crysVal has 4 values. If statement checks each entry against the current random value to make sure no crystals have duplicates. 
-        for (var i = 0; crysVal.length < 4; i++) {
+        //while loop runs until crysVal has 4 values. If statement checks each entry against the current random value to make sure no crystals have duplicates. 
+        while (crysVal.length < 4) {
             var tempRand = Math.ceil(Math.random() * 12);
             if ($.inArray(tempRand, crysVal) == -1) {
                 crysVal.push(tempRand);
