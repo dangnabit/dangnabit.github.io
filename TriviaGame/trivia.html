@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+<!-- bootstrap cdn -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- local stylesheet -->
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<!-- jQuery and local js scripts -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="assets/javascript/app.js"></script>
+
+<head>
+    <title>Trivia Game!</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="jumbotron col-sm-5" id="instructions">
+                <div class="text-center">
+                    <h1>Trivia Time!</h1>
+                    <p>Welcome to the wonderful world of trivia! Choose your catagory and difficulty level below! </p>
+                    <br>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="trivia_category" class="text-right">Select a Catagory:</label>
+                        <select id="trivia_category" class="form-control">
+                            <option value="any">Any Category</option>
+                            <option value="9">General Knowledge</option>
+                            <option value="10">Entertainment: Books</option>
+                            <option value="11">Entertainment: Film</option>
+                            <option value="12">Entertainment: Music</option>
+                            <option value="13">Entertainment: Musicals &amp; Theatres</option>
+                            <option value="14">Entertainment: Television</option>
+                            <option value="17">Science &amp; Nature</option>
+                            <option value="18">Science: Computers</option>
+                            <option value="19">Science: Mathematics</option>
+                            <option value="20">Mythology</option>
+                            <option value="21">Sports</option>
+                            <option value="22">Geography</option>
+                            <option value="23">History</option>
+                            <option value="24">Politics</option>
+                            <option value="25">Art</option>
+                            <option value="27">Animals</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="trivia_category">Select a Difficulty:</label>
+                        <select id="trivia_difficulty" class="form-control">
+                            <option value="any">Any Difficulty</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                        <br>
+                    </div>
+                    <div id="gameStart" class="btn btn-lg btn-primary col-sm-6 col-sm-offset-3">Start!</div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-sm-offset-1 text-center panel gameSection">
+                <div class="panel-heading">
+                    <p class="timer"><strong>Time: <span id="time">45</span></strong></p>
+                </div>
+                <div class="">
+                    <div id="question" class="panel-heading text-center">
+                        <p>Questions will show up here!</p>
+                        <p>Answer as many as you can in 45 seconds! </p>
+                    </div>
+                    <div id="selections" class="panel panel-body"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer navbar navbar-default navbar-fixed-bottom align-middle text-default text-center text-muted">
+            <p>&copy; Copyright 2017 Dan Gabel</p>
+            <p>Questions Provided by <a href="https://opentdb.com/" target="_blank">Open Trivia Database</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
