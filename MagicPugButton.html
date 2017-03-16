@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>The Magical pug Button</title>
+</head>
+
+<body>
+  <button id="pug-button">magical pug button</button>
+  <div id="images">
+  </div>
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript">
+    //Event handler for button on page
+    $("#pug-button").on("click", function() {
+
+      //Builds query for ajax call. This includes our API key
+      var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=pug";
+
+      //The actual ajax call
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+
+      //done function for ajax response
+      .done(function(response) {
+        console.log(response);
+        //stores data from ajax call in function variable
+        var imageUrl = response.data.image_original_url;
+
+        //jquery object img
+        var pugImage = $("<img>");
+
+        //adding img url to the jquery object we created and adds alt attribute
+        pugImage.attr("src", imageUrl);
+        pugImage.attr("alt", "pug image");
+        
+        //Changes html to show latest pug gif
+        $("#images").html(pugImage);
+      });
+    });
+  </script>
+</body>
+
+</html>
