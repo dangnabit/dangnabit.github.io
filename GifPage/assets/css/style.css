@@ -1,0 +1,31 @@
+body {
+	background-image: url("../images/bkgrd.png");
+}
+
+.jumbotron{
+	border-color: black;
+	border-style: solid;
+	border-width: 2px;
+	border-top: 0;
+}
+
+.gifs{
+	box-shadow: 10px 10px 50px black;
+}
+
+#sidebar-wrapper{
+	height:100%;
+}
+
+.btn {
+	margin: 4px;
+}
+
+.brand {
+	transform: rotate(30deg);
+	height: 150px;
+}
+
+.push {
+	height: 75px;
+}

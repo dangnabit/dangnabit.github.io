@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- favicon -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <!-- bootstrap cdn -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- local stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- jQuery cdn -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+  <!-- local app -->
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <title>GifTastic!</title>
+</head>
+
+<body>
+  <div class="container">
+    <!-- #sidebar-wrapper -->
+    <div id="sidebar-wrapper" class="col-sm-3 text-right">
+      <img class="brand" src="assets/images/thumbsup.png" alt="Thumbs Up">
+      <div class="navbar">
+        <form id="reaction-form">
+          <label for="reaction-input" class="text-left">Add a Reaction</label>
+          <br>
+          <input type="text" id="reaction-input">
+          <br>
+          <input id="add-reaction" class="btn btn-primary" type="submit" value="Add a Reaction">
+        </form>
+        <br>
+        <button type="button" id="loadBtn" class="btn btn-success hidden">Load List</button>
+        <button type="button" id="saveBtn" class="btn btn-default">Save List</button>
+        
+        <div id="btnList" class="text-right">
+        </div>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <div class="content-wrapper col-sm-9">
+      <div class="jumbotron text-center">
+        <h2>Check out these sweet reaction Gifs!!</h2>
+        <p>Click on the Buttons on the sidebar to load 10 gifs! <br> You can also customize your list by adding and saving as you see fit!</p>
+      </div>
+      <div class="text-center">
+        <div id="imageDisplay"></div>
+      </div>
+    </div>
+  </div>
+  <div class="push"></div>
+  <div class="footer navbar navbar-default navbar-fixed-bottom align-middle text-default text-center text-muted">
+    <p>&copy; Copyright 2017 Dan Gabel</p>
+    <p>Gifs Provided by <a href="https://giphy.com/" target="_blank">Giphy!</a></p>
+  </div>
+</body>
+
+</html>
