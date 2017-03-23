@@ -1,17 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Index</title>
 </head>
+
 <body>
-<a href="CrystalCollector/crystalCollector.html">Crystal Collector</a>
-<br>
-<a href="TriviaGame/trivia.html">Trivia</a>
-<br>
-<a href="GifPage/giftastic.html">GifTastic!</a>
-<br>
-<a href="MagicPugButton.html">Pug Button</a>
-<br>
-<a href="OAuth/OAuth Test.html">OAuth Test</a>
+  <a href="CrystalCollector/crystalCollector.html">Crystal Collector</a>
+  <br>
+  <a href="TriviaGame/trivia.html">Trivia</a>
+  <br>
+  <a href="GifPage/giftastic.html">GifTastic!</a>
+  <br>
+  <a href="MagicPugButton.html">Pug Button</a>
+  <br>
+  <a href="OAuth/OAuth Test.html">OAuth Test (Doesn't Work)</a>
+  <button onclick="hello('google').login()">Google</button>
+  <script type="text/javascript">
+  hello.init({
+    google: "AIzaSyAUYsyg6BMEAfnFRIk2rjrtjQGJ_hQhgO8"
+  }, {
+    redirect_uri: 'redirect.html'
+  });
+
+  hello.on('auth.login', function(auth) {
+
+    // Call user information, for the given network
+    hello(auth.network).api('me').then(function(r) {
+      // Inject it into the container
+      var label = document.getElementById('profile_' + auth.network);
+      if (!label) {
+        label = document.createElement('div');
+        label.id = 'profile_' + auth.network;
+        document.getElementById('profile').appendChild(label);
+      }
+      label.innerHTML = '<img src="' + r.thumbnail + '" /> Hey ' + r.name;
+    });
+  });
+  </script>
 </body>
+
 </html>
