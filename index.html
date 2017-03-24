@@ -36,7 +36,7 @@
         label.id = 'profile_' + auth.network;
         document.getElementById('profile').appendChild(label);
       }
-      label.innerHTML = '<img src="' + r.thumbnail + '" /> Hey ' + r.name;
+      label.innerHTML = '<img src="' + r.thumbnail + '" /> Hey ' + r.name + "<br>" + r.etag;
       var googSession = hello('google').getAuthResponse()
 
       var googAccessToken = googSession.access_token
