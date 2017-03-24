@@ -2,8 +2,7 @@
 <html>
 
 <head>
-
-<script type="text/javascript" src="OAuth/hello.js"></script>
+  <script type="text/javascript" src="OAuth/hello.js"></script>
   <title>Index</title>
 </head>
 
@@ -17,12 +16,13 @@
   <a href="MagicPugButton.html">Pug Button</a>
   <br>
   <a href="OAuth/OAuth Test.html">OAuth Test (Doesn't Work)</a>
-  <button onclick="hello('google').login()">Google</button>
+  <button onclick="hello('google').login()">Google Sign On</button>
+  <div id="profile"> </div>
   <script type="text/javascript">
   hello.init({
     google: "901877515687-0d07o7leoihhv3ina4bqcv40ab347q86.apps.googleusercontent.com"
   }, {
-    redirect_uri: 'https://dangnabit.github.io'
+    redirect_uri: 'https://dangnabit.github.io/OAuth/OAuth%20%Test.html'
   });
 
   hello.on('auth.login', function(auth) {
@@ -37,6 +37,14 @@
         document.getElementById('profile').appendChild(label);
       }
       label.innerHTML = '<img src="' + r.thumbnail + '" /> Hey ' + r.name;
+      var googSession = hello('google').getAuthResponse()
+
+      var googAccessToken = googSession.access_token
+
+      var googExpires = googSession.expires
+
+      console.log(googAccessToken);
+      console.log(googExpires);
     });
   });
   </script>
