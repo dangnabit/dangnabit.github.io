@@ -76,8 +76,10 @@
 
       console.log(googAccessToken);
       console.log(googExpires);
-      databaseRef.set({
-        user: userEtag
+     	
+      databaseRef.push({
+        users: userEtag
+
       });
     });
   });
