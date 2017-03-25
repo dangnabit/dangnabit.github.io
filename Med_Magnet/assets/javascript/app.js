@@ -31,6 +31,10 @@ $(document).ready(function() {
     };
 
 
+    var signin = function(){
+        hello('google').login();
+    }
+
 
     hello.init({
         google: "901877515687-0d07o7leoihhv3ina4bqcv40ab347q86.apps.googleusercontent.com"
@@ -75,5 +79,12 @@ $(document).ready(function() {
         });
     }
 
+    $('#signin').on('click', function(){
+        signin();
+    })
+
+    $('#signout').on('click', function(){
+        signout();
+    })
 
 })
