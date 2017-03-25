@@ -68,6 +68,7 @@ $(document).ready(function() {
             console.log(googExpires);
 
             writeUserData(r.etag, r.name, r.email, r.thumbnail);
+            $('#signin').css("opacity", "0%");
         });
     });
 
@@ -75,7 +76,8 @@ $(document).ready(function() {
     function writeUserData(userId, name, email, imageUrl) {
         firebase.database().ref('users/' + userId).set({
             username: name,
-            profile_picture: imageUrl
+            profile_picture: imageUrl,
+
         });
     }
 
