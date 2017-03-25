@@ -8,6 +8,9 @@
 </head>
 
 <body>
+  <br>
+  <a href="Med_Magnet/index.html">GifTastic!</a>
+  <br>
   <a href="CrystalCollector/crystalCollector.html">Crystal Collector</a>
   <br>
   <a href="TriviaGame/trivia.html">Trivia</a>
@@ -40,13 +43,13 @@
 
   var delete_cookie = function(name) {
     document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-};
+  };
 
   var signout = function() {
     hello('google').logout()
     localStorage.removeItem('hello');
     location.reload();
-  	delete_cookie('NID');
+    delete_cookie('NID');
 
   };
 
@@ -70,7 +73,7 @@
         label.id = 'profile_' + auth.network;
         document.getElementById('profile').appendChild(label);
       }
-      
+
       userEtag = r.etag;
 
       label.innerHTML = '<img src="' + r.thumbnail + '" /> Hey ' + r.name + "<br>" + r.etag;
@@ -82,19 +85,18 @@
 
       console.log(googAccessToken);
       console.log(googExpires);
-     	
+
       writeUserData(r.etag, r.name, r.email, r.thumbnail);
     });
   });
 
 
-function writeUserData(userId, name, email, imageUrl) {
-  firebase.database().ref('users/' + userId).set({
-    username: name,
-    profile_picture : imageUrl
-  });
-}
-
+  function writeUserData(userId, name, email, imageUrl) {
+    firebase.database().ref('users/' + userId).set({
+      username: name,
+      profile_picture: imageUrl
+    });
+  }
   </script>
 </body>
 
