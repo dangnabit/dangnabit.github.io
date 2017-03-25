@@ -89,6 +89,8 @@
 
 
 function writeUserData(userId, name, email, imageUrl) {
+  console.log(userId, name, email, imageUrl);
+
   databaseRef('users/' + userId).set({
     username: name,
     email: email,
