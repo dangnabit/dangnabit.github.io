@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     var signin = function() {
         hello('google').login();
-    }
+    };
 
 
     // Hello init, contains browers secret
@@ -69,7 +69,7 @@ $(document).ready(function() {
             console.log(googExpires);
 
             writeUserData(r.id, r.name, r.email, r.thumbnail);
-            currentUser = r.id,
+            currentUser = r.id;
         });
     });
 
