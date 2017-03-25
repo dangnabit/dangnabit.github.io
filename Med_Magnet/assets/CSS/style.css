@@ -1,0 +1,177 @@
+/*--Website Size--*/
+
+
+/*--LOGO--*/
+
+.h1,
+h1 {
+    font-size: 36px;
+    color: #d9534f;
+    margin: 2%;
+}
+
+.h1,
+.h2,
+.h3,
+.h4 {
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+
+/*--Nav Bar--*/
+
+.navbar-inverse {
+    background-image: linear-gradient(to bottom, #3c3c3c 0, #222 100%);
+    background-repeat: repeat-x;
+    border-radius: 4px;
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+
+.navbar-inverse .navbar-brand:hover {
+    color: #fff;
+    background-color: transparent;
+}
+
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+a:-webkit-any-link {
+    cursor: auto;
+}
+
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav>li>a {
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+}
+
+.navbar-inverse .navbar-brand {
+    color: #9d9d9d;
+}
+
+
+/*--Body--*/
+
+a.absolute {
+    position: absolute;
+    display: block;
+    margin-top left: 0;
+    top: 0;
+}
+
+
+/*--Red Pill--*/
+
+ul.first-r {
+    left: 0%;
+    position: relative;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.pager .next>a,
+.pager .next>span {
+    float: right;
+    color: red;
+}
+
+.pager li>a,
+.pager li>span {
+    display: inline-block;
+    padding: 5px 14px;
+    background-color: #fff;
+    border: 1px solid gray;
+    border-radius: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a:-webkit-any-link {
+    cursor: auto;
+}
+
+li {
+    text-align: -webkit-match-parent;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    background-color: #fff;
+}
+
+.vertical-text {
+
+    transform: rotate(90deg);
+    transform-origin: left top 0;
+}
+/*#drugPanel{
+    position: absolute;
+    top: 50%;
+    transition: all 1s;
+}
+#drugPanel.open{
+
+}
+#drugPanel:after{
+    content: "Drugs";
+    transform: rotate(90deg);
+    color: #fff;
+    background-color: #000;
+    right: 0;
+    top: 0;
+}
+#symptomPanel{
+    position: absolute;
+    top: 50%;
+}
+#symptomPanel.open{
+
+}
+#symptomPanel:before{
+    content: "Symptoms";
+    transform: rotate(90deg);
+    color: #fff;
+    background-color: #000;
+    left: 0;
+    top: 0;
+}*/
+/*--Blue Pill--*/
+
+
+/*--Middle Text Box--*/
+
+/*p {
+    position: relative;
+    left: 16.66666%;
+    width: 49.99998%;
+    text-align: justify;
+    text-justify: inter-word;
+}*/
+
+
+/*--Phone Size--*/
