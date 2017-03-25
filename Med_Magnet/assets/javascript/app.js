@@ -78,7 +78,8 @@ $(document).ready(function() {
         firebase.database().ref('users/' + userId).set({
             username: name,
             profile_picture: imageUrl,
-
+            drugList: drugSelected,
+            symptomList: sypmtomSelect
         });
     }
 
