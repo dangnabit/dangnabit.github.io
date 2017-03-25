@@ -35,7 +35,7 @@ $(document).ready(function() {
     hello.init({
         google: "901877515687-0d07o7leoihhv3ina4bqcv40ab347q86.apps.googleusercontent.com"
     }, {
-        redirect_uri: 'https://dangnabit.github.io/'
+        redirect_uri: 'https://dangnabit.github.io/Med_Magnet/index.html'
     });
 
     hello.on('auth.login', function(auth) {
@@ -75,5 +75,5 @@ $(document).ready(function() {
         });
     }
 
-    
+
 })
