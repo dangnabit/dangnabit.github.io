@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
     var userEtag = '';
-
-
+    var drugSelected = [];
+    var currentUser;
 
 // firebas congfig and cached functions
     var config = {
@@ -69,7 +69,7 @@ $(document).ready(function() {
             console.log(googExpires);
 
             writeUserData(r.id, r.name, r.email, r.thumbnail);
-
+            currentUser = r.id,
         });
     });
 
@@ -77,9 +77,7 @@ $(document).ready(function() {
     function writeUserData(userId, name, email, imageUrl) {
         firebase.database().ref('users/' + userId).set({
             username: name,
-            profile_picture: imageUrl,
-            drugList: drugSelected,
-            symptomList: sypmtomSelect
+            profile_picture: imageUrl
         });
     }
 
@@ -91,8 +89,18 @@ $(document).ready(function() {
         signout();
     })
 
+    var pushDrugtoProfile = function(drugs){
+        firebase.database().ref('users/' + currentUser).set({
+            drugList: drugs
+        })
+    }
 
 
+    var pushSymptomtoProfile = function(symptom){
+        firebase.database().ref('users/' + currentUser).set({
+            symptomList: symptoms
+        })
+    }
     //URL = Base + (event or label) + apiKey + searchParm
 
     //global variable to use inside api functions
@@ -121,7 +129,7 @@ $(document).ready(function() {
         width: "80%"
     });
 
-    var drugSelected = [];
+    
 
 
 
@@ -135,13 +143,7 @@ $(document).ready(function() {
 
         console.log("array: " + drugSelected)
 
-        // Push the value to Firebase
-        // database.ref().push({
-
-        //     drugSelected
-
-        // });
-
+        pushDrugtoProfile(drugSelected);
     });
 
     // Retrieve data from Firebase to display in the table
