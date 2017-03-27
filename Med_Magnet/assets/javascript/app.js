@@ -74,7 +74,7 @@ $(document).ready(function() {
 
             userEtag = r.etag;
 
-            label.innerHTML = '<img src="' + r.thumbnail + '" /> Hey ' + r.name + "<br>" + r.etag;
+            label.innerHTML = '<img src="' + r.thumbnail + '" /> Hey ' + r.name;
             var googSession = hello('google').getAuthResponse()
 
             var googAccessToken = googSession.access_token
@@ -89,6 +89,7 @@ $(document).ready(function() {
             currentUserImg = r.thumbnail;
             currentUserName = r.name;
             getuser(currentUserID);
+            writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
         });
     });
 
