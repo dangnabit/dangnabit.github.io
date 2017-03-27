@@ -88,8 +88,12 @@ $(document).ready(function() {
             currentUserID = r.id;
             currentUserImg = r.thumbnail;
             currentUserName = r.name;
+
+
             getuser(currentUserID);
             writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
+
+
         });
     });
 
@@ -97,7 +101,7 @@ $(document).ready(function() {
 
     // writes user data to firebase
     function writeUserData(userId, name, imageUrl, drugs, symptoms) {
-        firebase.database().ref('users/' + userId).set({
+        firebase.database().ref('users/' + userId).update({
             username: name,
             profile_picture: imageUrl,
             drugList: JSON.stringify(drugs),
@@ -112,7 +116,7 @@ $(document).ready(function() {
     $('#signout').on('click', function() {
         signout();
     })
-    
+
 
     var setDrugtoProfile = function(drugs) {
 
@@ -322,19 +326,19 @@ $(document).ready(function() {
     }
 
 
+
+
+
     database.ref('users/' + currentUserID + '/symptomsList').on("value", function(snapshot) {
         var symptomList = JSON.parse(snapshot.val());
 
-
-        // Nested for loops to parse User's symptom data and render them to the DOM
         for (symptom in symptomList) {
 
             for (var i = 0; i < symptomList[symptom].length; i++) {
-                console.log(symptomList[symptom][i]);
-                console.log(symptomList[symptom][i].date);
-                console.log(symptomList[symptom][i].intensity);
-
-
+                // console.log(symptomList[symptom][i]);
+                // console.log(symptomList[symptom][i].date);
+                // console.log(symptomList[symptom][i].intensity);
+                
                 var symptomContainer = $("<tr>");
                 // symptom is tagged with item-symptom name
                 symptomContainer.attr("id", "item-" + symptom);
