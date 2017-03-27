@@ -112,6 +112,7 @@ $(document).ready(function() {
     $('#signout').on('click', function() {
         signout();
     })
+    
 
     var setDrugtoProfile = function(drugs) {
 
