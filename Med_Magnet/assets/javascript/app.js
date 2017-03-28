@@ -28,9 +28,12 @@ $(document).ready(function() {
             currentUser = snapshot.val();
             currentUserName = currentUser.username;
             currentUserImg = currentUser.profile_picture;
-            drugSelected = JSON.parse(currentUser.drugList);
-            userSavedSymptomObject = JSON.parse(currentUser.symptomsList);
-
+            if (currentUser.druglist) {
+                drugSelected = JSON.parse(currentUser.drugList);
+            }
+            if (currentUser.symptomsList) {
+                userSavedSymptomObject = JSON.parse(currentUser.symptomsList);
+            }
         });
     };
 
@@ -41,9 +44,10 @@ $(document).ready(function() {
     var signout = function() {
         hello('google').logout()
         localStorage.removeItem('hello');
-        location.reload();
         delete_cookie('NID');
-    };
+        document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://dangnabit.github.com/Med_Magnet/index.html";
+        location.reload();
+    };    
 
 
     var signin = function() {
@@ -338,12 +342,12 @@ $(document).ready(function() {
                 // console.log(symptomList[symptom][i]);
                 // console.log(symptomList[symptom][i].date);
                 // console.log(symptomList[symptom][i].intensity);
-                
+
                 var symptomContainer = $("<tr>");
                 // symptom is tagged with item-symptom name
                 symptomContainer.attr("id", "item-" + symptom);
 
-                var symptomListTr = "<td>" + symptom + "</td><td>" + symptomList[symptom][i].date + "</td><td>" + symptomList[symptom][i].intensity + "</td><td><input type='button' id='checkbox'></td>";
+                var symptomListTr = "<td>" + symptom + "</td><td>" + symptomList[symptom][i].date + "</td><td>" + symptomList[symptom][i].intensity + "</td><td><input type='button' id='checkbox' data-symptom=" + symptom.replace(/\s/g, '-') + " data-index-number= " + i + "></td>";
 
                 symptomContainer.append(symptomListTr);
 
@@ -391,12 +395,37 @@ $(document).ready(function() {
     });
 
 
+
+
     $(document).on("click", "#checkbox", function(e) {
         $(this).closest('tr').remove();
+        var tableIndex = this.dataset.indexNumber;
+        var tableSymptom = this.dataset.symptom;
+        removeTR(tableSymptom, tableIndex);
+
     });
 
 
+    var removeTR = function(symptom, index) {
+        console.log(symptom + " :" + index);
 
+        symptom = symptom.replace(/-/g, " ");
+
+        if (index) {
+            userSavedSymptomObject[symptom].splice(index, 1);
+            console.log(userSavedSymptomObject[symptom].length);
+        }
+        console.log(typeof(index))
+
+        if (typeof(index) === 'undefined' || userSavedSymptomObject[symptom].length === 0) {
+            console.log("DELETE");
+            delete userSavedSymptomObject[symptom];
+        }
+
+        console.log(userSavedSymptomObject);
+        writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
+
+    }
 
 
 
