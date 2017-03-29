@@ -3,8 +3,8 @@ $(document).ready(function() {
     var currentUser = {};
     var userSavedSymptomObject = {};
     var drugSelected = [];
-    var currentUserID = "Default";
-    var currentUserImg = ""
+    var currentUserID = "0120";
+    var currentUserImg;
     var currentUserName = "Sign in to load your data!"
         // firebas congfig and cached functions
     var config = {
@@ -40,8 +40,16 @@ $(document).ready(function() {
                 drugSelected = JSON.parse(currentUser.drugList);
                 userSavedSymptomObject = JSON.parse(currentUser.symptomsList);
                 writeUserData(userID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
-                $('#username').text('Welcome back ' + currentUserName + '!');
-                $('#profileImg').attr('src', currentUserImg);
+                if(currentUserName === ""){
+                    $('#username').text('Welcome back ' + currentUserName + '!');
+                } else {
+                    $('#username').text(currentUserName);
+                }
+                
+                
+                if(currentUserImg){
+                    $('#profileImg').attr('src', currentUserImg);
+                }
                 renderDrugList(drugSelected);
             }
         });
@@ -335,7 +343,7 @@ $(document).ready(function() {
                 // symptom is tagged with item-symptom name
                 symptomContainer.attr("id", "item-" + symptom);
 
-                var symptomListTr = "<td>" + symptom + "</td><td>" + symptomList[symptom][i].date + "</td><td>" + symptomList[symptom][i].intensity + "</td><td><input type='button' id='checkbox' data-symptom=" + symptom.replace(/\s/g, '-') + " data-index-number= " + i + "></td>";
+                var symptomListTr = "<td>" + symptom + "</td><td>" + symptomList[symptom][i].date + "</td><td>" + symptomList[symptom][i].intensity + "</td><td><input type='button' id='checkbox' data-symptom=" + symptom.replace(/\s/g, '-') + " data-index-number= " + i + " value='x'></td>";
 
                 symptomContainer.append(symptomListTr);
 
