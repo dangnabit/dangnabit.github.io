@@ -126,8 +126,10 @@ body {
   background-color: #fff;
 }
 
-#profile {
-    color:#fff;
+
+#profileImg {
+  height: 50px;
+  width: 50px;
 }
 
 #drugCanvas {

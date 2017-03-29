@@ -32,12 +32,16 @@ $(document).ready(function() {
             if (!currentUser) {
                 writeUserData(userID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
                 location.reload(true);
+                $('#username').text('Hey ' + currentUserName + '! Thanks for joining MedMagnet!');
+                $('#profileImg').attr('src', currentUserImg);
             } else {
                 currentUserName = currentUser.username;
                 currentUserImg = currentUser.profile_picture;
                 drugSelected = JSON.parse(currentUser.drugList);
                 userSavedSymptomObject = JSON.parse(currentUser.symptomsList);
                 writeUserData(userID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
+                $('#username').text('Welcome back ' + currentUserName + '!');
+                $('#profileImg').attr('src', currentUserImg);
             }
         });
     };
@@ -70,8 +74,6 @@ $(document).ready(function() {
         hello(auth.network).api('me').then(function(r) {
 
             // Inject it into the container
-            $('#username').text('Hey ' + r.name);
-            $('#profileImg').attr('src', r.thumbnail);
             var googSession = hello('google').getAuthResponse()
             var googAccessToken = googSession.access_token
             var googExpires = googSession.expires
