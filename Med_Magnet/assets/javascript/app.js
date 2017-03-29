@@ -20,7 +20,8 @@ $(document).ready(function() {
     var databaseRef = database.ref();
     var userList = database.ref('users/');
 
-
+    var isDrugPanelOpen = false;
+    var isSympPanelOpen = false;
 
 
 
@@ -67,15 +68,10 @@ $(document).ready(function() {
     hello.on('auth.login', function(auth) {
         // Call user information, for the given network
         hello(auth.network).api('me').then(function(r) {
-            
+
             // Inject it into the container
-            var label = document.getElementById("profile");
-            if (!label) {
-                label = document.createElement('div');
-                label.id = 'profile_' + auth.network;
-                document.getElementById('profile').appendChild(label);
-            }
-            label.innerHTML = '<img src="' + r.thumbnail + '" /> Hey ' + r.name;
+            $('#profile').text('Hey ' + r.name);
+            $('#profileImg').attr('src', r.thumbnail);
             var googSession = hello('google').getAuthResponse()
             var googAccessToken = googSession.access_token
             var googExpires = googSession.expires
@@ -169,11 +165,11 @@ $(document).ready(function() {
     });
 
 
-    var renderDrugList = function(drugList) {     
+    var renderDrugList = function(drugList) {
         $(".table > #drugname").empty();
         for (var i = 0; i < drugList.length; i++) {
             // Append data to the DOM (data from firebase)
-            $(".table > #drugname").append("<tr><td class='drugadded btn btn-primary btn-sm'>" + drugList[i] + "</td>" + "<td><button class='deletebtn btn btn-danger btn-xs' data-drug=" + drugList[i] + ">Delete</button></td>" + "</tr>");
+            $(".table > #drugname").append("<tr><td class='drugadded btn btn-primary btn-sm'>" + drugList[i] + "</td>" + "<td class='deletebtn btn btn-danger btn-xs' data-drug=" + drugList[i] + ">x</td>" + "</tr>");
         }
     }
 
@@ -323,7 +319,7 @@ $(document).ready(function() {
     database.ref('users/' + currentUserID + '/symptomsList').on("value", function(snapshot) {
         var symptomList = JSON.parse(snapshot.val());
 
-        $("#symptomsDisplay").empty();
+        $("#symptomTable").empty();
 
         for (symptom in symptomList) {
 
@@ -341,7 +337,7 @@ $(document).ready(function() {
                 symptomContainer.append(symptomListTr);
 
                 // attach new symptom data to table
-                $("#symptomsDisplay").append(symptomContainer);
+                $("#symptomTable").append(symptomContainer);
 
                 $("#new-symptom-input").val('');
                 $("#new-symptom-date").val('');
@@ -362,28 +358,35 @@ $(document).ready(function() {
 
 
 
-        var userSymptomInput = $("#new-symptom-input").val().trim();
+        var userSymptomInput = $(".new-symptom-input").val();
         var userDateInput = $("#new-symptom-date").val();
         var userIntensityInput = $("#intensity option:selected").text();
 
 
-        if (userSavedSymptomObject[userSymptomInput] === undefined) {
-            userSavedSymptomObject[userSymptomInput] = [];
+        console.log(userSymptomInput + userDateInput + userIntensityInput);
+
+        if (userSymptomInput && userDateInput && userIntensityInput) {
+
+            if (userSavedSymptomObject[userSymptomInput] === undefined) {
+                userSavedSymptomObject[userSymptomInput] = [];
+            }
+
+            userSavedSymptomObject[userSymptomInput].push({
+                date: $("#new-symptom-date").val(),
+                intensity: $("#intensity option:selected").text()
+            });
+
+
+
+            writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
         }
-
-        userSavedSymptomObject[userSymptomInput].push({
-            date: $("#new-symptom-date").val(),
-            intensity: $("#intensity option:selected").text()
-        });
-
-        console.log(userSavedSymptomObject);
-
-        writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
-
         // create new row for new symptom
 
 
     });
+
+
+
 
 
 
@@ -406,10 +409,10 @@ $(document).ready(function() {
             userSavedSymptomObject[symptom].splice(index, 1);
             console.log(userSavedSymptomObject[symptom].length);
         }
-        console.log(typeof(index))
+
 
         if (typeof(index) === 'undefined' || userSavedSymptomObject[symptom].length === 0) {
-            console.log("DELETE");
+
             delete userSavedSymptomObject[symptom];
         }
 
@@ -420,38 +423,83 @@ $(document).ready(function() {
     }
 
 
-    $('#drugPanelBtn').on('click', function() {
-        if ($('#symptomPanel').hasClass('open')) {
-            $('#symptomPanel').removeClass('open');
+    $('#clickLeft').on('click', function() {
+        
+        if (!isDrugPanelOpen) {
+            $('#drugCanvas').fadeIn('slow', function() {});
+        } else {
+            $('#drugCanvas').fadeOut('slow', function() {});
         }
 
+        if (isSympPanelOpen) {
+            $('#symptomCanvas').fadeOut('fast', function() {});
+        }
+
+        if ($('#symptomPanel').hasClass('open')) {
+            $('#symptomPanel').removeClass('open');
+            isSympPanelOpen = false;
+        }
 
         if ($('#drugPanel').hasClass('open')) {
             $('#drugPanel').removeClass('open');
+            isDrugPanelOpen = false;
         } else {
             $('#drugPanel').addClass('open');
+            isDrugPanelOpen = true;
+        }
+    });
+
+    $('#clickRight').on('click', function() {
+
+        if (!isSympPanelOpen) {
+            setTimeout(function(){
+             $('#symptomCanvas').fadeIn('slow', function() {});
+            }, 1500)
+        } else {
+            $('#symptomCanvas').fadeOut('fast', function() {});
+        }
+
+        if (isDrugPanelOpen) {
+            $('#drugCanvas').fadeOut('slow', function() {});
         }
 
 
-    });
-
-    $('#symptomPanelBtn').on('click', function() {
         if ($('#drugPanel').hasClass('open')) {
             $('#drugPanel').removeClass('open');
+            isDrugPanelOpen = false;
         }
 
 
         if ($('#symptomPanel').hasClass('open')) {
             $('#symptomPanel').removeClass('open');
+            isSympPanelOpen = false;
         } else {
             $('#symptomPanel').addClass('open');
+            isSympPanelOpen = true;
         }
-
 
 
     });
 
 
+
+
+
+
+
+
+    var symptomSelectionArray = [' ', 'cachexia', 'loss of appetite', 'weight loss', 'weight gain', 'dry mouth', 'fatigue', 'malaise', 'asthenia', 'muscle weakness', 'pyrexia', 'jaundice', 'pain', 'abdominal pain', 'back pain', 'arm pain', 'leg pain', 'chest pain', 'neck pain', 'finger pain', 'foot pain', 'mouth pain', 'knee pain', 'hip pain', 'joint pain', 'bruising', 'epistaxis', 'tremor', 'convulsions', 'muscle cramps', 'amaurosis fugax', 'blurred vision', 'Dalrymples sign', 'double vision', 'exophthalmos', 'mydriasis', 'miosis', 'nystagmus', 'eye pain', 'red eye', 'blindness', 'loss of vision', 'anorexia', 'bloating', 'belching', 'blood in stool', 'melena', 'hematochezia', 'constipation', 'diarrhea', 'loose stool', 'dysphagia', 'dyspepsia', 'flatulence', 'gas', 'fecal incontinence', 'haematemesis', 'blood in vomit', 'nausea', 'odynophagia', 'sore throat', 'tinnitus', 'ear pain', 'dizziness', 'vertigo', 'proctalgia fugax', 'rectal pain', 'anal itching', 'syncope', 'pyrosis', 'fainting', 'passing out', 'hypothermia', 'rectal malodor', 'foul smelling stool', 'hypothermia', 'hyperthermia', 'steatorrhea', 'discharge', 'vomiting', 'rectal discharge', 'penile discharge', 'mucous', 'bleeding', 'rectal bleeding', 'swelling', 'swelling', 'deformity', 'claudication', 'sweats', 'night sweats', 'palpitation', 'heart flutter', 'chills', 'shivering', 'tachycardia', 'fast heartrate', 'bradycardia', 'slow heartrate', 'arrhythmia', 'irregular heartbeat', 'irregular heartrate', 'acalculia', 'acrophobia', 'agnosia', 'dysuria', 'difficulty urinating', 'hematuria', 'blood in urine', 'agoraphobia', 'impotence', 'akathisia', 'polyuria', 'alexia', 'urinary frequency', 'retrograde ejaculation', 'anhedonia', 'urinary incontinence', 'urine retention', 'anxiety', 'hypoventilation', 'apraxia', 'hypoventilation', 'hyperventilation', 'arachnophobia', 'ataxia', 'bradypnea', 'bradykinesia', 'slow movment', 'slow breathing', 'difficulty breathing', 'apnea', 'stopped breathing', 'cough', 'cataplexy', 'fear', 'chorea', 'dyspnea', 'irregular breathing', 'claustrophobia', 'hemoptysis', 'bloody cough', 'confusion', 'pleuritic chest pain', 'air bubble', 'depression', 'overdose', 'sputum production', 'snot', 'excessive mucous', 'tachypnea', 'fast breathing', 'dysarthria', 'dysgraphia', 'abrasion', 'alopecia', 'hair loss', 'dystonia', 'flaccid muscles', 'flaccidity', 'euphoria', 'blister', 'anasarca', 'hallucination', 'edema', 'headache', 'hirsutism', 'hair growth', 'hemiballismus', 'ballismus', 'laceration', 'paresthesia', 'homocidal ideation', 'insomnia', 'rash', 'urticaria', 'pimples', 'bumps', 'red dots', 'mania', 'paralysis', 'abnormal vaginal bleeding', 'excessive vaginal bleeding', 'bloody show', 'painful intercourse', 'pelvic pain', 'infertility', 'labour pains', 'vaginal bleeding in pregnancy', 'vaginal discharge', 'vaginismus', 'paranoia', 'phobia', 'prosopagnosia', 'sciatica', 'somnolence', 'sleepiness', 'suicidal ideation', 'tic', 'toothache', 'light headed', 'nauseated', 'sick', 'short of breath', 'sweaty', 'sleepy', 'tired', 'thirsty', 'weak'];
+    // Create option list of all the drugs
+    for (var i = 0; i < drugArray.length; i++) {
+
+        $(".new-symptom-input").append("<option>" + symptomSelectionArray[i] + "</option>");
+
+    }
+
+    $(".new-symptom-input").chosen({
+        // Set the drop down bar width
+        width: "40%"
+    });
 
 
 });
