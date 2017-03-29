@@ -3,7 +3,7 @@ $(document).ready(function() {
     var currentUser = {};
     var userSavedSymptomObject = {};
     var drugSelected = [];
-    var currentUserID = "0120";
+    var currentUserID = "Default";
     var currentUserImg;
     var currentUserName = "Sign in to load your data!"
         // firebas congfig and cached functions
