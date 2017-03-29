@@ -3,7 +3,7 @@ $(document).ready(function() {
     var currentUser = {};
     var userSavedSymptomObject = {};
     var drugSelected = [];
-    var currentUserID = "Default";
+    var currentUserID;
     var currentUserImg;
     var currentUserName = "Sign in to load your data!"
         // firebas congfig and cached functions
@@ -24,6 +24,12 @@ $(document).ready(function() {
     var isSympPanelOpen = false;
 
 
+    if (localStorage.getItem('USERLogin')) {
+        currentUserID = localStorage.getItem('USERLogin');
+    } else {
+        currentUserID = "Default";
+    }
+
 
     var getUser = function(userID) {
         database.ref('/users/' + userID).once('value').then(function(snapshot) {
@@ -41,14 +47,14 @@ $(document).ready(function() {
                 drugSelected = JSON.parse(currentUser.drugList);
                 userSavedSymptomObject = JSON.parse(currentUser.symptomsList);
                 writeUserData(userID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
-                if(currentUserName === ""){
+                if (currentUserName === "") {
                     $('#username').text('Welcome back ' + currentUserName + '!');
                 } else {
                     $('#username').text(currentUserName);
                 }
-                
-                
-                if(currentUserImg){
+
+
+                if (currentUserImg) {
                     $('#profileImg').attr('src', currentUserImg);
                 }
                 renderDrugList(drugSelected);
@@ -64,12 +70,14 @@ $(document).ready(function() {
     var signout = function() {
         hello('google').logout()
         localStorage.removeItem('hello');
+        localStorage.removeItem('USERLogin');
         delete_cookie('NID');
         document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://dangnabit.github.io/Med_Magnet/index.html";
     };
 
     var signin = function() {
         hello('google').login();
+
     };
 
     // Hello init, contains browers secret
@@ -95,6 +103,7 @@ $(document).ready(function() {
             $('#signOut').removeClass('hidden');
             getuser(currentUserID);
             console.log(currentUserID);
+            localStorage.setItem('USERLogin', currentUserID);
             writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
         });
     });
@@ -123,7 +132,7 @@ $(document).ready(function() {
     }
 
 
-    getUser(currentUserID);
+
 
 
 
@@ -438,7 +447,7 @@ $(document).ready(function() {
 
 
     $('#clickLeft').on('click', function() {
-        
+
         if (!isDrugPanelOpen) {
             $('#drugCanvas').fadeIn('slow', function() {});
         } else {
@@ -466,8 +475,8 @@ $(document).ready(function() {
     $('#clickRight').on('click', function() {
 
         if (!isSympPanelOpen) {
-            setTimeout(function(){
-             $('#symptomCanvas').fadeIn('slow', function() {});
+            setTimeout(function() {
+                $('#symptomCanvas').fadeIn('slow', function() {});
             }, 1500)
         } else {
             $('#symptomCanvas').fadeOut('fast', function() {});
@@ -497,6 +506,7 @@ $(document).ready(function() {
 
 
 
+    getUser(currentUserID);
 
 
 
