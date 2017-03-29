@@ -80,6 +80,7 @@ $(document).ready(function() {
             currentUserID = r.id;
             currentUserImg = r.thumbnail;
             currentUserName = r.name;
+            $('#signOut').removeClass('hidden');
             getuser(currentUserID);
             writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
         });
@@ -95,11 +96,11 @@ $(document).ready(function() {
         });
     }
 
-    $('#signin').on('click', function() {
+    $('#signIn').on('click', function() {
         signin();
     })
 
-    $('#signout').on('click', function() {
+    $('#signOut').on('click', function() {
         signout();
     })
 
