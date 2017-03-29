@@ -111,7 +111,7 @@ $(document).ready(function() {
             getuser(currentUserID);
             writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
         
-            location.href=location.href;
+            document.location.reload();
         });
     });
 
