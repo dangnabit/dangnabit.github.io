@@ -105,13 +105,12 @@ $(document).ready(function() {
             $('#username').text('Welcome back ' + currentUserName + '!');
             $('#profileImg').attr('src', currentUserImg);
             $('#signOut').removeClass('hidden');
-            
+
             console.log(currentUserID);
             localStorage.setItem('userLogon', currentUserID);
             getuser(currentUserID);
             writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
-        
-            document.location.href = 'https://dangnabit.github.io/Med_Magnet/index.html';
+
         });
     });
 
