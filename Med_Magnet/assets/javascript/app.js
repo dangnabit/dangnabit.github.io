@@ -35,14 +35,14 @@ $(document).ready(function() {
     var getUser = function(userID) {
         database.ref('/users/' + userID).once('value').then(function(snapshot) {
             currentUser = snapshot.val();
-            console.log(currentUser);
+            // console.log(currentUser);
             if (!currentUser) {
                 writeUserData(userID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
                 location.reload(true);
                 $('#username').text('Hey ' + currentUserName + '! Thanks for joining MedMagnet!');
                 $('#profileImg').attr('src', currentUserImg);
             } else {
-                console.log('Works');
+                // console.log('Works');
                 currentUserName = currentUser.username;
                 currentUserImg = currentUser.profile_picture;
                 drugSelected = JSON.parse(currentUser.drugList);
@@ -110,6 +110,8 @@ $(document).ready(function() {
             localStorage.setItem('userLogon', currentUserID);
             getuser(currentUserID);
             writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
+        
+            location.reload();
         });
     });
 
@@ -182,7 +184,7 @@ $(document).ready(function() {
 
         drugSelected.push($(".drugselect").val());
 
-        console.log("array: " + drugSelected)
+        // console.log("array: " + drugSelected)
 
         setDrugtoProfile(drugSelected);
     });
@@ -234,7 +236,7 @@ $(document).ready(function() {
         var toDelete = this.dataset.drug;
         var index = drugSelected.indexOf(toDelete);
 
-        console.log(toDelete, index)
+        // console.log(toDelete, index)
         drugSelected.splice(index, 1);
         renderDrugList(drugSelected);
         writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
