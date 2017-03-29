@@ -24,9 +24,9 @@ $(document).ready(function() {
     var isSympPanelOpen = false;
 
 
-    if (localStorage.getItem('USERLogin')) {
+    if (localStorage.getItem('userLogon')) {
         console.log('Current User Detected');
-        currentUserID = localStorage.getItem('USERLogin');
+        currentUserID = localStorage.getItem('userLogon');
     } else {
         currentUserID = "Default";
     }
@@ -71,10 +71,13 @@ $(document).ready(function() {
     var signout = function() {
         hello('google').logout()
         localStorage.removeItem('hello');
-        localStorage.removeItem('USERLogin');
+        localStorage.removeItem('userLogon');
         delete_cookie('NID');
         document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://dangnabit.github.io/Med_Magnet/index.html";
     };
+
+
+
 
     var signin = function() {
         hello('google').login();
@@ -102,9 +105,10 @@ $(document).ready(function() {
             $('#username').text('Welcome back ' + currentUserName + '!');
             $('#profileImg').attr('src', currentUserImg);
             $('#signOut').removeClass('hidden');
-            getuser(currentUserID);
+            
             console.log(currentUserID);
-            localStorage.setItem('USERLogin', currentUserID);
+            localStorage.setItem('userLogon', currentUserID);
+            getuser(currentUserID);
             writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
         });
     });
@@ -117,6 +121,7 @@ $(document).ready(function() {
             drugList: JSON.stringify(drugs),
             symptomsList: JSON.stringify(symptoms)
         });
+        localStorage.setItem('userLogon', userId);
     }
 
     $('#signIn').on('click', function() {
