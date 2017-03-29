@@ -111,7 +111,7 @@ $(document).ready(function() {
             getuser(currentUserID);
             writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
         
-            document.location.reload();
+            document.location.href = 'https://dangnabit.github.io/Med_Magnet/index.html';
         });
     });
 
