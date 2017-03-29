@@ -70,7 +70,7 @@ $(document).ready(function() {
         hello(auth.network).api('me').then(function(r) {
 
             // Inject it into the container
-            $('#profile').prepend('Hey ' + r.name);
+            $('#username').text('Hey ' + r.name);
             $('#profileImg').attr('src', r.thumbnail);
             var googSession = hello('google').getAuthResponse()
             var googAccessToken = googSession.access_token
