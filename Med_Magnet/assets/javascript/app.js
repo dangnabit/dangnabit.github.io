@@ -35,6 +35,7 @@ $(document).ready(function() {
                 $('#username').text('Hey ' + currentUserName + '! Thanks for joining MedMagnet!');
                 $('#profileImg').attr('src', currentUserImg);
             } else {
+                console.log('Works');
                 currentUserName = currentUser.username;
                 currentUserImg = currentUser.profile_picture;
                 drugSelected = JSON.parse(currentUser.drugList);
