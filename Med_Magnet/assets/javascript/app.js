@@ -3,9 +3,9 @@ $(document).ready(function() {
     var currentUser = {};
     var userSavedSymptomObject = {};
     var drugSelected = [];
-    var currentUserID = "0120";
-    var currentUserImg = "http://i0.wp.com/radaronline.com/wp-content/uploads/2014/06/seth-rogan-james-franco.jpg?resize=236%2C169"
-    var currentUserName = "James Franco"
+    var currentUserID = "Default";
+    var currentUserImg = ""
+    var currentUserName = "Sign in to load your data!"
         // firebas congfig and cached functions
     var config = {
         apiKey: "AIzaSyAUYsyg6BMEAfnFRIk2rjrtjQGJ_hQhgO8",
@@ -42,6 +42,7 @@ $(document).ready(function() {
                 writeUserData(userID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
                 $('#username').text('Welcome back ' + currentUserName + '!');
                 $('#profileImg').attr('src', currentUserImg);
+                renderDrugList(drugSelected);
             }
         });
     };
@@ -77,13 +78,12 @@ $(document).ready(function() {
             var googSession = hello('google').getAuthResponse()
             var googAccessToken = googSession.access_token
             var googExpires = googSession.expires
-            console.log(googAccessToken);
-            console.log(googExpires);
             currentUserID = r.id;
             currentUserImg = r.thumbnail;
             currentUserName = r.name;
             $('#signOut').removeClass('hidden');
             getuser(currentUserID);
+            console.log(currentUserID);
             writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
         });
     });
