@@ -90,6 +90,8 @@ $(document).ready(function() {
             currentUserID = r.id;
             currentUserImg = r.thumbnail;
             currentUserName = r.name;
+            $('#username').text('Welcome back ' + currentUserName + '!');
+            $('#profileImg').attr('src', currentUserImg);
             $('#signOut').removeClass('hidden');
             getuser(currentUserID);
             console.log(currentUserID);
