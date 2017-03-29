@@ -1,9 +1,5 @@
-/*--Website Size--*/
-
-
-
-
-/*--LOGO--*/
+/*Google Font*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 .h1,
 h1 {
@@ -120,10 +116,11 @@ li {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   background-color: #fff;
+  margin-top: 10px;
 }
 
 
@@ -137,6 +134,10 @@ body {
  
 }
 
+#about{
+  color: #404040;
+}
+
 #drugPanel {
   width: 50%;  
   transfrom: translate3d(-100%, -55%, 0);
@@ -147,10 +148,7 @@ body {
   -webkit-transition: all 1.5s;
   height: 600px;
   padding-right: 0;
-  background: -webkit-gradient(
-          linear, right top, left top, from(rgba(255, 255, 255, 0)),
-          to(rgba(0, 0, 100, 1.0))
-        );
+  background: #f2f2f2;
 }
 
 #drugPanel.open {
@@ -158,14 +156,15 @@ body {
   -webkit-transform: translate3d(0%, -55%, 0);
     width: 70%;
     z-index: 100;
-    background-color: #ccc;
+    background-color: #f2f2f2;
+    box-shadow: 0px 0px 8px 0px rgba(82,82,82,0.39);
 }
 
 #clickLeft {
   content: "";
   position: absolute;
-  color: #ccc;
-  background-color: #000;
+  color: #000;
+  background-color: #E96359;
   right: 0;
   top: 0;
   height: 600px;
@@ -195,10 +194,7 @@ body {
   -webkit-transition: all 2s;
   height: 600px;
   padding-left: 0;
-  background: -webkit-gradient(
-          linear, left top, right top, from(rgba(255, 255, 255, 0)),
-          to(rgba(100, 0, 0, 1.0))
-        );
+  background: #f2f2f2;
 }
 
 #symptomPanel.open {
@@ -206,7 +202,8 @@ body {
   -webkit-transform: translate3d(0%, -55%, 0);
     width: 70%;
     z-index: 100;
-    background-color: #ccc;
+    background-color: #f2f2f2;
+    box-shadow: 0px 0px 8px 0px rgba(82,82,82,0.39);
 }
 
 
@@ -214,8 +211,8 @@ body {
 #clickRight {
   content: "";
   position: absolute;
-  color: #ccc;
-  background-color: #000;
+  color: #000;
+  background-color: #3B97D3;
   left: 0;
   top: 0;
   height: 600px;
@@ -227,7 +224,10 @@ body {
   padding: 0;
   list-style-type: none;
 }
-
+#symptomLogo, #drugLogo{
+  margin-left: 10px;
+  margin-top: 20px;
+}
 .push {
     height: 75px;
 }
