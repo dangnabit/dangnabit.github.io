@@ -25,6 +25,7 @@ $(document).ready(function() {
 
 
     if (localStorage.getItem('USERLogin')) {
+        console.log('Current User Detected');
         currentUserID = localStorage.getItem('USERLogin');
     } else {
         currentUserID = "Default";
