@@ -182,14 +182,13 @@ $(document).ready(function() {
 
     // Add the drugs to drugList
     $(".addbutton").on("click", function() {
-
         event.preventDefault();
-
-        if (drugSelected.indexOf($('.drugSelect').val() === -1 )){
-            drugSelected.push($(".drugselect").val());
+        var $drugSelect = $('.drugselect').val();
+        var index = drugSelected.indexOf($drugSelect);
+        if (index < 0){
+            drugSelected.push($drugSelect);
             setDrugtoProfile(drugSelected);
         }
-        
     });
 
     // Retrieve druglist from Firebase to display in the table
