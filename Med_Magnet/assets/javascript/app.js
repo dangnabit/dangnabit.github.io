@@ -3,7 +3,7 @@ $(document).ready(function() {
     var currentUser = {};
     var userSavedSymptomObject = {};
     var drugSelected = [];
-    var currentUserID = '0120';
+    var currentUserID = '107580231397808901546';
     var currentUserImg;
     var currentUserName = "Sign in to load your data!"
         // firebas congfig and cached functions
@@ -185,12 +185,11 @@ $(document).ready(function() {
 
         event.preventDefault();
 
-
-        drugSelected.push($(".drugselect").val());
-
-        // console.log("array: " + drugSelected)
-
-        setDrugtoProfile(drugSelected);
+        if (indexOf($('.drugSelect').val() === -1 )){
+            drugSelected.push($(".drugselect").val());
+            setDrugtoProfile(drugSelected);
+        }
+        
     });
 
     // Retrieve druglist from Firebase to display in the table
@@ -477,7 +476,7 @@ $(document).ready(function() {
 
         console.log(userSavedSymptomObject);
         writeUserData(currentUserID, currentUserName, currentUserImg, drugSelected, userSavedSymptomObject);
-        console.log("HELP");
+        
     }
 
     //Drug Panel Fade in - Fade Out
