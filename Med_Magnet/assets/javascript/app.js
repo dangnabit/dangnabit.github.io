@@ -185,7 +185,7 @@ $(document).ready(function() {
 
         event.preventDefault();
 
-        if (indexOf($('.drugSelect').val() === -1 )){
+        if (drugSelected.indexOf($('.drugSelect').val() === -1 )){
             drugSelected.push($(".drugselect").val());
             setDrugtoProfile(drugSelected);
         }
